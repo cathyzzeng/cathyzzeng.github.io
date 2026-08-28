@@ -251,6 +251,17 @@ exclude:
   - gems/
   - migrations/
   - vendor
+  - about_einstein.md
+  - blog.md
+  - books.md
+  - cv.md
+  - dropdown.md
+  - news.md
+  - plugins.md
+  - projects.md
+  - publications.md
+  - repositories.md
+  - teching.md
 keep_files:
   - CNAME
   - .nojekyll
