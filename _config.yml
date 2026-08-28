@@ -258,7 +258,7 @@ exclude:
   - projects.md
   - publications.md
   - repositories.md
-  - teching.md
+  - teaching.md
 keep_files:
   - CNAME
   - .nojekyll
