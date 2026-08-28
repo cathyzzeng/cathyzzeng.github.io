@@ -1,5 +1,12 @@
-<h2>Economic Theory Conferences</h2>
+---
+layout: page
+permalink: /conferences/
+title: economic theory conferences
+description: This page serves as a guide for upcoming economic theory conferences. [TK]
+nav: true
+nav_order: 3
+---
 
-This page serves as a guide for upcoming economic theory conferences. [TK]
+
 
 [TK] PhD Student Conferences:
