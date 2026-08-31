@@ -14,4 +14,95 @@ nav_order: 2
 
 <h2>Presentation Map</h2>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var categoryColors = {
+      mine: '#2563eb',
+      upcoming: '#eab308'
+    };
+
+    var locations = [
+      { name: 'King’s College London PPE for Public Policy Graduate Conference (2025)', lat: 51.511486, lng: -0.115997, category: 'mine' },
+      { name: 'Economic Science Association Europe (2025)', lat: 49.195321, lng: 16.598395, category: 'mine' },
+    ];
+
+    var mapElement = document.getElementById('presentations-map');
+    if (!mapElement || typeof L === 'undefined') {
+      return;
+    }
+
+    var map = L.map('presentations-map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var categoryPriority = {
+      mine: 1,
+      upcoming: 2,
+    };
+
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, function (character) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[character];
+      });
+    }
+
+    function presentationPopupHtml(group) {
+      var orderedPresentations = group.slice().sort(function (a, b) {
+        return (categoryPriority[a.category] || 99) - (categoryPriority[b.category] || 99);
+      });
+      var heading = orderedPresentations.length > 1 ? '<div class="presentation-popup-heading">Same location, distinct presentations</div>' : '';
+      var items = orderedPresentations.map(function (presentation) {
+        var color = categoryColors[presentation.category] || '#2563eb';
+        return '<div class="presentation-popup-item"><span class="presentation-popup-pin" style="background:' + color + ';"></span><span>' + escapeHtml(presentation.name) + '</span></div>';
+      }).join('');
+
+      return '<div class="presentation-popup">' + heading + '<div class="presentation-popup-list">' + items + '</div></div>';
+    }
+
+    var groupedLocations = {};
+    locations.forEach(function (location) {
+      var locationKey = location.lat + ',' + location.lng;
+      if (!groupedLocations[locationKey]) {
+        groupedLocations[locationKey] = [];
+      }
+      groupedLocations[locationKey].push(location);
+    });
+
+    var bounds = L.latLngBounds();
+    Object.keys(groupedLocations).forEach(function (locationKey) {
+      var group = groupedLocations[locationKey].sort(function (a, b) {
+        return (categoryPriority[a.category] || 99) - (categoryPriority[b.category] || 99);
+      });
+      var visiblePresentation = group[0];
+      var pinColor = categoryColors[visiblePresentation.category] || '#2563eb';
+      var pinClass = group.length > 1 ? 'presentation-pin-wrap has-nearby-presentation' : 'presentation-pin-wrap';
+
+      var pinIcon = L.divIcon({
+        className: '',
+        html: '<div class="' + pinClass + '"><div class="presentation-pin" style="background:' + pinColor + ';"></div></div>',
+        iconSize: [24, 32],
+        iconAnchor: [12, 31],
+        popupAnchor: [0, -31]
+      });
+
+      L.marker([visiblePresentation.lat, visiblePresentation.lng], { icon: pinIcon, riseOnHover: true })
+        .addTo(map)
+        .bindPopup(presentationPopupHtml(group));
+      bounds.extend([visiblePresentation.lat, visiblePresentation.lng]);
+    });
+
+    map.fitBounds(bounds, { padding: [40, 40] });
+  });
+</script>
+
 <small>Inspired by [Michael Challis](https://michaelchallis.github.io).</small>
