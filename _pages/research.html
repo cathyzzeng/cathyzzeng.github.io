@@ -41,15 +41,13 @@ nav_order: 2
     if (!mapElement || typeof L === 'undefined') {
       return;
     }
-
-    var map = L.map('presentation-map').setView([51.505, -0.09], 13);
+    
+    var map = L.map('presentation-map').setView([0, 0], 0);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
-
-    map.setMaxZoom(map.getBoundsZoom([-85.0511, -180], [85.0511, 180]], true));
     
     var categoryPriority = {
       mine: 1,
