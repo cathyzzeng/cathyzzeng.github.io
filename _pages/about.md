@@ -24,8 +24,6 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-<h1>Cathy Zeng</h1>
-
 I am an Economics PhD Candidate at the University of Rochester.
 
 My research is in the area of microeconomic theory, specializing in matching, market design, and game theory.
