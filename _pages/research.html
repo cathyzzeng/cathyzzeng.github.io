@@ -49,6 +49,8 @@ nav_order: 2
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    map.setMaxZoom(map.getBoundsZoom([-85.0511, -180], [85.0511, 180]], true));
+    
     var categoryPriority = {
       mine: 1,
       upcoming: 2,
