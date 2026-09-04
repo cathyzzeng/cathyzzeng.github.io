@@ -22,97 +22,68 @@ nav_order: 2
 <div id="presentation-map">
 
 <style>
-  #presentation-map { height: 450px; }
+  #presentation-map { height: 512px; }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var categoryColors = {
-      mine: '#2563eb',
-      upcoming: '#eab308'
-    };
 
-    var locations = [
-      { name: 'King’s College London PPE for Public Policy Graduate Conference (2025)', lat: 51.511486, lng: -0.115997, category: 'mine' },
-      { name: 'Economic Science Association Europe (2025)', lat: 49.195321, lng: 16.598395, category: 'mine' },
-    ];
+  var map = L.map('presentation-map').setView([20, 0], 2);
 
-    var mapElement = document.getElementById('presentation-map');
-    if (!mapElement || typeof L === 'undefined') {
-      return;
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    minZoom: 1,
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+<!--icons-->
+
+var LeafIcon = L.Icon.extend({
+    options: {
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize:     [25, 41],
+        shadowSize:   [41, 41],
+        iconAnchor:   [12, 41],
+        popupAnchor:  [1, -34]
     }
-    
-    var map = L.map('presentation-map').setView([0, 0], 0);
+});
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-    
-    var categoryPriority = {
-      mine: 1,
-      upcoming: 2,
-    };
 
-    function escapeHtml(value) {
-      return value.replace(/[&<>"']/g, function (character) {
-        return {
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          "'": '&#39;'
-        }[character];
-      });
-    }
+var greenIcon = new LeafIcon({iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png'}),
+    redIcon = new LeafIcon({iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'}),
+    goldIcon = new LeafIcon({iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png'});
 
-    function presentationPopupHtml(group) {
-      var orderedPresentations = group.slice().sort(function (a, b) {
-        return (categoryPriority[a.category] || 99) - (categoryPriority[b.category] || 99);
-      });
-      var heading = orderedPresentations.length > 1 ? '<div class="presentation-popup-heading">Same location, distinct presentations</div>' : '';
-      var items = orderedPresentations.map(function (presentation) {
-        var color = categoryColors[presentation.category] || '#2563eb';
-        return '<div class="presentation-popup-item"><span class="presentation-popup-pin" style="background:' + color + ';"></span><span>' + escapeHtml(presentation.name) + '</span></div>';
-      }).join('');
 
-      return '<div class="presentation-popup">' + heading + '<div class="presentation-popup-list">' + items + '</div></div>';
-    }
+<!--2025-->
 
-    var groupedLocations = {};
-    locations.forEach(function (location) {
-      var locationKey = location.lat + ',' + location.lng;
-      if (!groupedLocations[locationKey]) {
-        groupedLocations[locationKey] = [];
-      }
-      groupedLocations[locationKey].push(location);
-    });
+var coed2025 = L.marker([51.877364, 0.949875], {icon: redIcon}).addTo(map);
+coed2025.bindPopup("14th Conference on Economic Design (2025)");
 
-    var bounds = L.latLngBounds();
-    Object.keys(groupedLocations).forEach(function (locationKey) {
-      var group = groupedLocations[locationKey].sort(function (a, b) {
-        return (categoryPriority[a.category] || 99) - (categoryPriority[b.category] || 99);
-      });
-      var visiblePresentation = group[0];
-      var pinColor = categoryColors[visiblePresentation.category] || '#2563eb';
-      var pinClass = group.length > 1 ? 'presentation-pin-wrap has-nearby-presentation' : 'presentation-pin-wrap';
+var sing20 = L.marker([50.847212, 5.685952], {icon: redIcon}).addTo(map);
+sing20.bindPopup("European Meeting on Game Theory (2025)");
 
-      var pinIcon = L.divIcon({
-        className: '',
-        html: '<div class="' + pinClass + '"><div class="presentation-pin" style="background:' + pinColor + ';"></div></div>',
-        iconSize: [24, 32],
-        iconAnchor: [12, 31],
-        popupAnchor: [0, -31]
-      });
+var otago = L.marker([-45.864979, 170.514615], {icon: greenIcon}).addTo(map);
+otago.bindPopup("University of Otago (2025)");
 
-      L.marker([visiblePresentation.lat, visiblePresentation.lng], { icon: pinIcon, riseOnHover: true })
-        .addTo(map)
-        .bindPopup(presentationPopupHtml(group));
-      bounds.extend([visiblePresentation.lat, visiblePresentation.lng]);
-    });
+<!--2026-->
 
-    map.fitBounds(bounds, { padding: [40, 40] });
-  });
+var cireq2026 = L.marker([45.495244, -73.578581], {icon: redIcon}).addTo(map);
+cireq2026.bindPopup("CIREQ Interdisciplinary PhD Conference in Applied Market Design (2026)");
+
+var fecd2026 = L.marker([48.706615, 2.177096], {icon: redIcon}).addTo(map);
+fecd2026.bindPopup("Fair and Explainable Collective Decision (2026)");
+
+var sscw2026 = L.marker([35.711716, 139.763746], {icon: redIcon}).addTo(map);
+sscw2026.bindPopup("18th Meeting of the Society for Social Choice and Welfare (2026)");
+
+var cmid2026 = L.marker([53.94539, -1.031459], {icon: redIcon}).addTo(map);
+cmid2026.bindPopup("Conference on Mechanism and Institution Design (2026)");
+
+var icgt2026 = L.marker([40.909081, -73.120552], {icon: redIcon}).addTo(map);
+icgt2026.bindPopup("37th Stony Brook International Conference on Game Theory (2026)");
+
+var iwgtea2026 = L.marker([-23.561048, -46.725226], {icon: redIcon}).addTo(map);
+iwgtea2026.bindPopup("4th International Workshop on Game Theory and Economic Applications (2026)");
+  
 </script>
 
 </div>
