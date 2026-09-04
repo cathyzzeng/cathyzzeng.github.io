@@ -23,6 +23,24 @@ nav_order: 2
 
 <style>
   #presentation-map { height: 512px; }
+
+    .legend {
+    line-height: 15px;
+    color: #000000;
+    background-color: rgba(240,240,240,0.3);
+    padding: 5px;
+    box-shadow: 2px 2px 2px grey;
+    border-radius: 5px;
+}
+.legend i {
+    width: 13px;
+    height: 13px;
+    float: left;
+    margin-right: 6px;
+    opacity: 1;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px grey;
+}
 </style>
 
 <script>
@@ -48,8 +66,7 @@ var LeafIcon = L.Icon.extend({
 });
 
 
-var greenIcon = new LeafIcon({iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png'}),
-    redIcon = new LeafIcon({iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'}),
+var redIcon = new LeafIcon({iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'}),
     goldIcon = new LeafIcon({iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png'});
 
 
@@ -61,7 +78,7 @@ coed2025.bindPopup("14th Conference on Economic Design (2025)");
 var sing20 = L.marker([50.847212, 5.685952], {icon: redIcon}).addTo(map);
 sing20.bindPopup("European Meeting on Game Theory (2025)");
 
-var otago = L.marker([-45.864979, 170.514615], {icon: greenIcon}).addTo(map);
+var otago = L.marker([-45.864979, 170.514615], {icon: goldIcon}).addTo(map);
 otago.bindPopup("University of Otago (2025)");
 
 <!--2026-->
@@ -83,7 +100,33 @@ icgt2026.bindPopup("37th Stony Brook International Conference on Game Theory (20
 
 var iwgtea2026 = L.marker([-23.561048, -46.725226], {icon: redIcon}).addTo(map);
 iwgtea2026.bindPopup("4th International Workshop on Game Theory and Economic Applications (2026)");
-  
+
+<!--legend-->
+
+function getColor(d) {
+        return d === 'Conference'  ? "#cb2b3e" :
+               "#ffd326" ;
+    }
+
+var legend = L.control({position: 'bottomleft'});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        labels = [];
+        categories = ['Conference','Seminar']
+
+    for (var i = 0; i < categories.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(categories[i]) + '"></i> ' +
+            categories[i] + '<br>';
+    }
+
+    return div;
+};
+
+legend.addTo(map);
+
 </script>
 
 </div>
