@@ -19,11 +19,6 @@ nav_order: 3
 - :round_pushpin: Maastricht, NL
 - :spiral_calendar: July 17--19, 2028
 
-<ul style="list-style-type:none">
-  <li>:round_pushpin: Maastricht, NL</li>
-  <li>:spiral_calendar: July 17--19, 2028</li>
-</ul>
-
 <hr>
 
 <h3> PhD Student Conferences </h3>
