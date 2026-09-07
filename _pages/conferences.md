@@ -7,13 +7,31 @@ nav: true
 nav_order: 3
 ---
 
+<h3>2026</h3>
+
+[Midwest International Trade & Theory Conference, Fall 2026](https://sites.google.com/view/midwesttradetheoryconference)
+- :round_pushpin: Toronto, CA
+- :spiral_calendar: October 16--18, 2026
+
+<h3>2027</h3>
+
+[Midwest International Trade & Theory Conference, Spring 2027](https://sites.google.com/view/midwesttradetheoryconference)
+- :round_pushpin: Boulder, CO
+- :spiral_calendar: April 16--18, 2027
+
 [European Meeting on Game Theory 2027](https://sites.google.com/unisa.it/sing)
 - :round_pushpin: Porto, PT
 - :spiral_calendar: July 12--14, 2027
 
+[38th Stony Brook International Conference on Game Theory](https://gtcenter.org/international-conference/)
+- :round_pushpin: Stony Brook, NY
+- :spiral_calendar: July 2027
+
 [15th Conference on Economic Design](https://sites.google.com/site/societyforeconomicdesign/)
 - :round_pushpin: Cologne, DE
 - :spiral_calendar: August 2027
+
+<h3>2028</h3>
 
 [MATCH-UP 2028](https://www.dcs.gla.ac.uk/research/algorithms/MATCHUP/)
 - :round_pushpin: Maastricht, NL
