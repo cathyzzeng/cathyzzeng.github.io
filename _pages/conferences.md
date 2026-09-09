@@ -37,6 +37,10 @@ nav_order: 3
 - :round_pushpin: Maastricht, NL
 - :spiral_calendar: July 17--19, 2028
 
+[8th World Congress of the Game Theory Society](https://gametheorysociety.org/8th-world-congress-stony-brook-july-17-21-2008/)
+- :round_pushpin: Stony Brook, NY
+- :spiral_calendar: July 17--21, 2028
+
 <hr>
 
 <h3> PhD Student Conferences </h3>
