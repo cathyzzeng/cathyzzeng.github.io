@@ -15,6 +15,10 @@ nav_order: 3
 
 <h3>2027</h3>
 
+[44th Australasian Economic Theory Workshop](https://www.econometricsociety.org/regions/australasia/regional-news/2026/09/11/44th-Australasian-Economic-Theory-Workshop)
+- :round_pushpin: Melbourne, AU
+- :spiral_calendar: February 11--12, 2027
+
 [Midwest International Trade & Theory Conference, Spring 2027](https://sites.google.com/view/midwesttradetheoryconference)
 - :round_pushpin: Boulder, CO
 - :spiral_calendar: April 16--18, 2027
