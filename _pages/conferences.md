@@ -7,12 +7,6 @@ nav: true
 nav_order: 3
 ---
 
-<h3>2026</h3>
-
-[Midwest International Trade & Theory Conference, Fall 2026](https://sites.google.com/view/midwesttradetheoryconference)
-- :round_pushpin: Toronto, CA
-- :spiral_calendar: October 16--18, 2026
-
 <h3>2027</h3>
 
 [44th Australasian Economic Theory Workshop](https://www.econometricsociety.org/regions/australasia/regional-news/2026/09/11/44th-Australasian-Economic-Theory-Workshop)
@@ -49,10 +43,10 @@ nav_order: 3
 
 <h3> PhD Student Conferences </h3>
 
-[Economics Graduate Student Conference](https://sites.wustl.edu/egsc/)
-- :round_pushpin: St. Louis, MO
-- :spiral_calendar: October 10, 2026
-
 [15th Warwick Economics PhD Conference](https://warwick.ac.uk/fac/soc/economics/research/phd-conference-2027/)
 - :round_pushpin: Warwick, UK
 - :spiral_calendar: May 2027
+
+[Economics Graduate Student Conference](https://sites.wustl.edu/egsc/)
+- :round_pushpin: St. Louis, MO
+- :spiral_calendar: October 2027
